@@ -28,7 +28,7 @@ jobs: #Jobs - Every Job runs in
     - uses: actions/setup-python@v4
       with:
         python-version: '3.10' 
-    - run: python my_script.py
+    - run: python main.py
       
 #    - name: Build and push docker image to Docker Hub # docker login cred     docker build     docker tag # https://github.com/marketplace/actions/docker-build-push-action
 #      uses: mr-smithers-excellent/docker-build-push@v6 #action with v6
