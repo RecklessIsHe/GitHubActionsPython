@@ -23,28 +23,19 @@ jobs: #Jobs - Every Job runs in
       matrix:
         os: [ubuntu-latest]
 
-    steps: # Steps followed by actions
-    - uses: actions/checkout@v3 # Here's an example of an action that performs a git checkout of a repository.
-    - name: Set up JDK 11
-      uses: actions/setup-java@v3 # Installs dependencies - Java
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
       with:
-        java-version: '11'
-        distribution: 'temurin'
-        
-    - name: Run chmod to make gradlew executable # Runs the commands
-      run: chmod +x ./gradlew
+        python-version: '3.10' 
+    - run: python my_script.py
       
-    - name: Build with Gradle # Builds the code
-      uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
-      with:
-        arguments: build
-
-    - name: Build and push docker image to Docker Hub # docker login cred     docker build     docker tag # https://github.com/marketplace/actions/docker-build-push-action
-      uses: mr-smithers-excellent/docker-build-push@v6 #action with v6
-      with:
-        image: don31658/githubactionspython #Parameters to overwrite Docker ID and repo name
-        tags: v1, latest
-        dockerfile: ./Dockerfile
-        registry: docker.io
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+#    - name: Build and push docker image to Docker Hub # docker login cred     docker build     docker tag # https://github.com/marketplace/actions/docker-build-push-action
+#      uses: mr-smithers-excellent/docker-build-push@v6 #action with v6
+#      with:
+#        image: don31658/githubactionspython #Parameters to overwrite Docker ID and repo name
+#        tags: v1, latest
+#        dockerfile: ./Dockerfile
+#        registry: docker.io
+#        username: ${{ secrets.DOCKER_USERNAME }}
+#        password: ${{ secrets.DOCKER_PASSWORD }}
