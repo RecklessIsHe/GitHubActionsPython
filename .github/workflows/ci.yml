@@ -2,8 +2,7 @@
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
 # documentation.
-# This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
+# This workflow will build a Docker image that contains a Python script
 
 name: Java CI with Gradle
 
@@ -43,7 +42,7 @@ jobs: #Jobs - Every Job runs in
     - name: Build and push docker image to Docker Hub # docker login cred     docker build     docker tag # https://github.com/marketplace/actions/docker-build-push-action
       uses: mr-smithers-excellent/docker-build-push@v6 #action with v6
       with:
-        image: don31658/githubactions1 #Parameters to overwrite Docker ID and repo name
+        image: don31658/githubactionspython #Parameters to overwrite Docker ID and repo name
         tags: v1, latest
         dockerfile: ./Dockerfile
         registry: docker.io
