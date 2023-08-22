@@ -36,7 +36,7 @@ jobs: #Jobs - Every Job runs in
     - name: all-lints
       uses: ricardochaves/python-lint@master
       with:
-        python-root-list: "tests"
+        python-root-list: "test"
       
     - name: Build and push docker image to Docker Hub # docker login cred     docker build     docker tag # https://github.com/marketplace/actions/docker-build-push-action
       uses: mr-smithers-excellent/docker-build-push@v6 #action with v6
