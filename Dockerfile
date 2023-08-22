@@ -1,6 +1,4 @@
 FROM python:3
-WORKDIR /usr/src/app
-COPY Pipfile ./
-RUN pip install --no-cache-dir pipenv && pipenv install
-COPY *.py .
+# Or any preferred Python version.
+ADD main.py .
 CMD [ "python", "./main.py" ]
