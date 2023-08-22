@@ -33,11 +33,10 @@ jobs: #Jobs - Every Job runs in
         python-version: '3.10' 
     - run: python main.py
 
-    - name: Run PyLint on Python file
-      id: hello
-      uses: LakshitF/pylint3-action@master
+    - name: all-lints
+      uses: ricardochaves/python-lint@master
       with:
-        filename: 'main.py'
+        python-root-list: "tests"
       
     - name: Build and push docker image to Docker Hub # docker login cred     docker build     docker tag # https://github.com/marketplace/actions/docker-build-push-action
       uses: mr-smithers-excellent/docker-build-push@v6 #action with v6
