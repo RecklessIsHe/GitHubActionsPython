@@ -4,7 +4,7 @@
 # documentation.
 # This workflow will build a Docker image that contains a Python script
 
-name: Java CI with Gradle
+name: Dockerize Python App
 
 on: #Event is triggered ( series of commands when a  code is pushed or PR is created) testing - testing
   push:
@@ -24,6 +24,7 @@ jobs: #Jobs - Every Job runs in
         os: [ubuntu-latest]
 
     steps:
+    # Run Python app to see output in log
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
       with:
