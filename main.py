@@ -1,4 +1,4 @@
-b# import random
+# import random
 # define a function to roll the dice
 # create a dictionary that will have the drawings of the dice
 
