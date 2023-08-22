@@ -2,7 +2,9 @@
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
 # documentation.
-# This workflow will build a Docker image that contains a Python script
+# This workflow will run the python script, run Pylint on the
+# python code, and then build a Docker image that contains the 
+# Python app
 
 name: Dockerize Python App
 
@@ -24,12 +26,18 @@ jobs: #Jobs - Every Job runs in
         os: [ubuntu-latest]
 
     steps:
-    # Run Python app to see output in log
+    # Run Python app to see output in log (sample dice roll)
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
       with:
         python-version: '3.10' 
     - run: python main.py
+
+    - name: Run PyLint on Python file
+      id: hello
+      uses: LakshitF/pylint3-action@master
+      with:
+        filename: 'main.py'
       
     - name: Build and push docker image to Docker Hub # docker login cred     docker build     docker tag # https://github.com/marketplace/actions/docker-build-push-action
       uses: mr-smithers-excellent/docker-build-push@v6 #action with v6
