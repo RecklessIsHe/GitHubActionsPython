@@ -32,11 +32,6 @@ jobs: #Jobs - Every Job runs in
       with:
         python-version: '3.10' 
     - run: python main.py
-
-    - name: all-lints
-      uses: ricardochaves/python-lint@master
-      with:
-        python-root-list: "test"
       
     - name: Build and push docker image to Docker Hub # docker login cred     docker build     docker tag # https://github.com/marketplace/actions/docker-build-push-action
       uses: mr-smithers-excellent/docker-build-push@v6 #action with v6
@@ -47,3 +42,9 @@ jobs: #Jobs - Every Job runs in
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+
+    # Run pylint on all the python scripts in the "test" folder
+    - name: all-lints
+      uses: ricardochaves/python-lint@master
+      with:
+        python-root-list: "test"
