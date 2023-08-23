@@ -2,9 +2,11 @@
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
 # documentation.
-# This workflow will run the python script, run Pylint on the
-# python code, and then build a Docker image that contains the 
-# Python app
+# This workflow does a number of things:
+#   - Run the python script (sample dice roll)
+#   - Build a Docker Image and push to GH Packages
+#   - Build a Docker Image and push to Docker Hub
+#   - Run "pylint" on the python scripts in the "test" folder
 
 name: Dockerize Python App
 
@@ -33,15 +35,15 @@ jobs: #Jobs - Every Job runs in
         python-version: '3.10' 
     - run: python main.py
 
+    # Push to gitHub Packages using https://github.com/marketplace/actions/push-to-ghcr
     - uses: actions/checkout@v2
-
-    # https://github.com/marketplace/actions/push-to-ghcr
     - name: Build and publish a Docker image for ${{ github.repository }}
       uses: macbre/push-to-ghcr@master
       with:
         image_name: ${{ github.repository }}  # it will be lowercased internally
         github_token: ${{ secrets.GH_TOKEN }}
-      
+
+    # Push to Docker Hub
     - name: Build and push docker image to Docker Hub # docker login cred     docker build     docker tag # https://github.com/marketplace/actions/docker-build-push-action
       uses: mr-smithers-excellent/docker-build-push@v6 #action with v6
       with:
