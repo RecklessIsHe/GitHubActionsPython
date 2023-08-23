@@ -32,6 +32,15 @@ jobs: #Jobs - Every Job runs in
       with:
         python-version: '3.10' 
     - run: python main.py
+
+    - uses: actions/checkout@v2
+
+    # https://github.com/marketplace/actions/push-to-ghcr
+    - name: Build and publish a Docker image for ${{ github.repository }}
+      uses: macbre/push-to-ghcr@master
+      with:
+        image_name: ${{ ghactions.python }}  # it will be lowercased internally
+        github_token: ${{ secrets.GH_TOKEN }}
       
     - name: Build and push docker image to Docker Hub # docker login cred     docker build     docker tag # https://github.com/marketplace/actions/docker-build-push-action
       uses: mr-smithers-excellent/docker-build-push@v6 #action with v6
