@@ -1,9 +1,5 @@
+The GH Actions file does 3 things:
 
-##### build Docker image called python-app. Execute from root
-
-    docker build -t python-app .
-    
-##### push image up to repo 
-
-    docker tag python-app demo-app:python-1.0
-    
+1. Run a simple Python script which simulates a dice roll.  Results are logged.
+2. Build and push docker image to Docker Hub
+3. Run pylint on all the Python scripts in the "test" folder.  This step is done last because it appears that linting errors will abort the job.
