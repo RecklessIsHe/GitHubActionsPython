@@ -1,4 +1,4 @@
-The GH Actions file does 3 things:
+The GH Actions file does 4 things:
 
 1. Run a simple Python script which simulates a dice roll.  Results are logged.
 2. Build and push docker image to GitHub Packages
